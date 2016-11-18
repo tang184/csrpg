@@ -1,26 +1,48 @@
 <!DOCTYPE html>
 <html>
-
   <head>
-    <title>NodeJS Starter Application</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="stylesheets/style.css">
-  </head>
+    <meta charset="utf-8" />
+    <title>HTML5 Pacman</title>
+    
+    <style type="text/css">
+      #pacman {
+        height:450px;
+        width:400px;
+      }
+      #shim { 
+        position:absolute;
+        visibility:hidden
+      }
+      h1 { text-align:center; }
+      body { width:400px; margin:0px auto; font-family:sans-serif; }
+      a { text-decoration:none; }
+    </style>
 
-  <body>
-    <table>
-      <tr>
-        <td style= "width:30%;">
-          <img class = "newappIcon" src="images/newapp-icon.png">
-        </td>
-        <td>
-          <h1 id="message">CS 252 PROJECT 6!!Are you Ready?!</h1>
-          <p class='description'></p> Thanks for creating a <span class = "blue">NodeJS Starter Application</span>.
-        </td>
-      </tr>
-    </table>
-  </body>
+</head>
 
+<body>
+  
+  <div id="shim">shim for font face</div>
+
+  <h1>HTML5 Pacman</h1>
+
+
+  <div id="pacman"></div>
+  <script src="pacman.js"></script>
+  <script src="modernizr-1.5.min.js"></script>
+
+  <script>
+
+    var el = document.getElementById("pacman");
+
+    if (Modernizr.canvas && Modernizr.localstorage && 
+        Modernizr.audio && (Modernizr.audio.ogg || Modernizr.audio.mp3)) {
+      window.setTimeout(function () { PACMAN.init(el, "./"); }, 0);
+    } else { 
+      el.innerHTML = "Sorry, needs a decent browser<br /><small>" + 
+        "(firefox 3.6+, Chrome 4+, Opera 10+ and Safari 4+)</small>";
+    }
+  </script>
+
+</body>
 </html>
