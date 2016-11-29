@@ -87,7 +87,7 @@ function init_scene() {
     mat4.identity(temp);
     mat4.translate(temp, [0, 0, -8]);
     mat4.multiply(temp, base_object.pos_rel, base_object.pos_rel);
-    mat4.translate(openset_matrix, [ 0.0,  0.0,  6.0], openset_matrix);
+    mat4.translate(openset_matrix, [ -1.0,  0.0,  6.5], openset_matrix);
     calculate_all_pos_abs();
     appply_all_pos_draw();
 }
@@ -204,6 +204,8 @@ function handleMouseUp(event) {
     mouseDown = false;
 }
 
+var sumY = 0;
+
 function handleMouseMove(event) {
     if (!mouseDown) {
 	return;
@@ -211,12 +213,15 @@ function handleMouseMove(event) {
     var newX = event.clientX;
     var newY = event.clientY;
 
-    var deltaX = newX - lastMouseX
+    var deltaX = newX - lastMouseX;
 	mat4.rotate(openset_matrix, deltaX / 500, [0, 1, 0]);
 
     var deltaY = newY - lastMouseY;
-    mat4.rotate(openset_matrix, deltaY / 500, [1, 0, 0]);
-
+    if (deltaY > 5 || deltaY < -5) {
+        sumY += deltaY;
+        mat4.rotate(openset_matrix, deltaY / 500, [1, 0, 0]);
+    }
     lastMouseX = newX
-	lastMouseY = newY;
+    lastMouseY = newY;
+    
 }
