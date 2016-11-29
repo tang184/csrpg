@@ -82,12 +82,12 @@ function init_scene() {
     var cube;
     var temp = mat4.create();;
     
-    cube = new_cube(2, 0.5);
+    cube = new_cube(4, 1);
     
     mat4.identity(temp);
     mat4.translate(temp, [0, 0, -8]);
     mat4.multiply(temp, base_object.pos_rel, base_object.pos_rel);
-    
+    mat4.translate(openset_matrix, [ 0.0,  0.0,  6.0], openset_matrix);
     calculate_all_pos_abs();
     appply_all_pos_draw();
 }
