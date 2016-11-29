@@ -59,9 +59,8 @@
 		colors = [
              1.0,  1.0,  1.0,  alpha,
              1.0,  1.0,  1.0,  alpha,
-             1.0,  1.0,  1.0,  alpha,
-             0.0,  0.0,  0.0,  alpha
-
+             0.0,  0.0,  0.0,  alpha,
+             1.0,  1.0,  1.0,  alpha
         ];
 		object = create_object(vertices, colors, base_object);
 		
@@ -73,10 +72,10 @@
 		mat4.multiply(temp, object.pos_rel, object.pos_rel);
 		
 		colors = [
-             1.0,  1.0,  1.0,  alpha,
-             1.0,  1.0,  1.0,  alpha,
-             0.0,  0.0,  0.0,  alpha,
-             1.0,  1.0,  1.0,  alpha
+             1.0,  1.0,  1.0,  0.6,
+             1.0,  1.0,  1.0,  0.6,
+             1.0,  1.0,  1.0,  0.6,
+             1.0,  1.0,  1.0,  0.6
         ];
 		object = create_object(vertices, colors, base_object);
 		
@@ -88,10 +87,10 @@
 		mat4.multiply(temp, object.pos_rel, object.pos_rel);
 		
 		colors = [
-             1.0,  1.0,  1.0,  alpha,
-             1.0,  1.0,  1.0,  alpha,
-             0.0,  0.0,  0.0,  alpha,
-             1.0,  1.0,  1.0,  alpha
+             1.0,  1.0,  1.0,  0.6,
+             1.0,  1.0,  1.0,  0.6,
+             1.0,  1.0,  1.0,  0.6,
+             1.0,  1.0,  1.0,  0.6
         ];
 		object = create_object(vertices, colors, base_object);
 		
