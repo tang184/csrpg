@@ -117,7 +117,7 @@ function drawScene() {
     gl.viewport(0, 0, gl.viewportWidth, gl.viewportHeight);
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-    mat4.perspective(45, gl.viewportWidth / gl.viewportHeight, 0.1, 100.0, pMatrix);
+    mat4.perspective(120, gl.viewportWidth / gl.viewportHeight, 0.1, 100.0, pMatrix);
     
     draw_objects();
 }
@@ -182,16 +182,16 @@ function handleKeys(time_delta) {
     }*/
 
     if (currentlyPressedKeys[83]) {
-        mat4.rotate(openset_matrix, (time_delta)*200 / 500, [1, 0, 0]);
+        mat4.rotate(openset_matrix, (time_delta)*100 / 500, [1, 0, 0]);
     }
     if (currentlyPressedKeys[87]) {
-        mat4.rotate(openset_matrix, -(time_delta)*200 / 500, [1, 0, 0]);
+        mat4.rotate(openset_matrix, -(time_delta)*100 / 500, [1, 0, 0]);
     }
     if (currentlyPressedKeys[68]) {
-        mat4.rotate(openset_matrix, (time_delta)*200 / 500, [0, 1, 0]);
+        mat4.rotate(openset_matrix, (time_delta)*400 / 500, [0, 1, 0]);
     }
     if (currentlyPressedKeys[65]) {
-        mat4.rotate(openset_matrix, -(time_delta)*200 / 500, [0, 1, 0]);
+        mat4.rotate(openset_matrix, -(time_delta)*400 / 500, [0, 1, 0]);
     }
 
 
