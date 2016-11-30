@@ -128,7 +128,26 @@ function init_scene() {
     mat4.translate(temp, [-0.99, 0, 0]);
     mat4.multiply(temp, wind.pos_rel, wind.pos_rel);
 
-    
+    var picture = create_object([
+         0.20,  0.20,  0.0, 
+        -0.20,  0.20,  0.0, 
+         0.20, -0.20,  0.0, 
+        -0.20, -0.20,  0.0
+        ], [
+         1.0, 1.0, 1.0, 1.0,
+         1.0, 1.0, 1.0, 1.0,
+         1.0, 1.0, 1.0, 1.0,
+         1.0, 1.0, 1.0, 1.0
+        ], room);
+
+    mat4.identity(temp);
+    mat4.rotate(temp, 3.14 / 2, [0, 1, 0]);
+    mat4.multiply(temp, picture.pos_rel, picture.pos_rel);
+
+    mat4.identity(temp);
+    mat4.translate(temp, [-0.99, 0, 0]);
+    mat4.multiply(temp, picture.pos_rel, picture.pos_rel);
+
 	var locker = create_object([
 		 0.075,  0.1,  0.0, 
 		-0.075,  0.1,  0.0, 
