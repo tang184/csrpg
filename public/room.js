@@ -92,22 +92,43 @@ function init_scene() {
     mat4.multiply(temp, room.pos_rel, room.pos_rel);
     // mat4.translate(openset_matrix, [ 0.0,  0.0,  8.0], openset_matrix);
 	
-	var door = create_object([
-		 0.25,  0.5,  0.0, 
-		-0.25,  0.5,  0.0, 
-		 0.25, -0.5,  0.0, 
-		-0.25, -0.5,  0.0
-		], [
-		 0.5, 0.2, 0.0, 1.0,
-		 0.5, 0.2, 0.0, 1.0,
-		 0.5, 0.2, 0.0, 1.0,
-		 0.5, 0.2, 0.0, 1.0
-		], room);
-		
+    var door = create_object([
+         0.25,  0.5,  0.0, 
+        -0.25,  0.5,  0.0, 
+         0.25, -0.5,  0.0, 
+        -0.25, -0.5,  0.0
+        ], [
+         0.5, 0.2, 0.0, 1.0,
+         0.5, 0.2, 0.0, 1.0,
+         0.5, 0.2, 0.0, 1.0,
+         0.5, 0.2, 0.0, 1.0
+        ], room);
+        
     mat4.identity(temp);
     mat4.translate(temp, [0.25, -0.5, -0.99]);
     mat4.multiply(temp, door.pos_rel, door.pos_rel);
-	
+    
+    var wind = create_object([
+         0.25,  0.25,  0.0, 
+        -0.25,  0.25,  0.0, 
+         0.25, -0.25,  0.0, 
+        -0.25, -0.25,  0.0
+        ], [
+         0.5, 0.2, 0.0, 1.0,
+         0.5, 0.2, 0.0, 1.0,
+         0.5, 0.2, 0.0, 1.0,
+         0.5, 0.2, 0.0, 1.0
+        ], room);
+        
+    mat4.identity(temp);
+    mat4.rotate(temp, 3.14 / 2, [0, 1, 0]);
+    mat4.multiply(temp, wind.pos_rel, wind.pos_rel);
+
+    mat4.identity(temp);
+    mat4.translate(temp, [-0.99, 0, 0]);
+    mat4.multiply(temp, wind.pos_rel, wind.pos_rel);
+
+    
 	var locker = create_object([
 		 0.075,  0.1,  0.0, 
 		-0.075,  0.1,  0.0, 
