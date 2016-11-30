@@ -84,15 +84,96 @@ function initShaders() {
 var pMatrix = mat4.create();
 
 function init_scene() {
-    var cube;
     var temp = mat4.create();;
-    
-    cube = new_cube(1, 1);
+    var room = new_cube(1, 1);
     
     mat4.identity(temp);
-    mat4.translate(temp, [0, 0, -8]);
-    mat4.multiply(temp, base_object.pos_rel, base_object.pos_rel);
-    mat4.translate(openset_matrix, [ 0.0,  0.0,  8.0], openset_matrix);
+    // mat4.translate(temp, [0, 0, -8]);
+    mat4.multiply(temp, room.pos_rel, room.pos_rel);
+    // mat4.translate(openset_matrix, [ 0.0,  0.0,  8.0], openset_matrix);
+	
+	var door = create_object([
+		 0.25,  0.5,  0.0, 
+		-0.25,  0.5,  0.0, 
+		 0.25, -0.5,  0.0, 
+		-0.25, -0.5,  0.0
+		], [
+		 0.5, 0.2, 0.0, 1.0,
+		 0.5, 0.2, 0.0, 1.0,
+		 0.5, 0.2, 0.0, 1.0,
+		 0.5, 0.2, 0.0, 1.0
+		], room);
+		
+    mat4.identity(temp);
+    mat4.translate(temp, [0.25, -0.5, -0.99]);
+    mat4.multiply(temp, door.pos_rel, door.pos_rel);
+	
+	var locker = create_object([
+		 0.075,  0.1,  0.0, 
+		-0.075,  0.1,  0.0, 
+		 0.075, -0.1,  0.0, 
+		-0.075, -0.1,  0.0
+		], [
+		 0.0, 0.5, 1.0, 1.0,
+		 0.0, 0.5, 1.0, 1.0,
+		 0.0, 0.5, 1.0, 1.0,
+		 0.0, 0.5, 1.0, 1.0
+		], door);
+		
+    mat4.identity(temp);
+    mat4.translate(temp, [-0.125, 0.05, 0.01]);
+    mat4.multiply(temp, locker.pos_rel, locker.pos_rel);
+	
+	var key_v = [
+		 0.0175,  0.0175,  0.0, 
+		-0.0175,  0.0175,  0.0, 
+		 0.0175, -0.0175,  0.0, 
+		-0.0175, -0.0175,  0.0
+		];
+	var key_c = [
+		 1.0, 1.0, 0.0, 1.0,
+		 1.0, 1.0, 0.0, 1.0,
+		 1.0, 1.0, 0.0, 1.0,
+		 1.0, 1.0, 0.0, 1.0
+		]
+	
+	var key = create_object(key_v, key_c, locker);
+    mat4.identity(temp);
+    mat4.translate(temp, [-0.0425,  0.0225, 0.01]);
+    mat4.multiply(temp, key.pos_rel, key.pos_rel);
+	var key = create_object(key_v, key_c, locker);
+    mat4.identity(temp);
+    mat4.translate(temp, [-0.0425,  -0.02, 0.01]);
+    mat4.multiply(temp, key.pos_rel, key.pos_rel);
+	var key = create_object(key_v, key_c, locker);
+    mat4.identity(temp);
+    mat4.translate(temp, [-0.0425,  -0.0625, 0.01]);
+    mat4.multiply(temp, key.pos_rel, key.pos_rel);
+	var key = create_object(key_v, key_c, locker);
+    mat4.identity(temp);
+    mat4.translate(temp, [ 0.0,  0.0225, 0.01]);
+    mat4.multiply(temp, key.pos_rel, key.pos_rel);
+	var key = create_object(key_v, key_c, locker);
+    mat4.identity(temp);
+    mat4.translate(temp, [ 0.0,  -0.02, 0.01]);
+    mat4.multiply(temp, key.pos_rel, key.pos_rel);
+	var key = create_object(key_v, key_c, locker);
+    mat4.identity(temp);
+    mat4.translate(temp, [ 0.0,  -0.0625, 0.01]);
+    mat4.multiply(temp, key.pos_rel, key.pos_rel);
+	var key = create_object(key_v, key_c, locker);
+    mat4.identity(temp);
+    mat4.translate(temp, [ 0.0425,  0.0225, 0.01]);
+    mat4.multiply(temp, key.pos_rel, key.pos_rel);
+	var key = create_object(key_v, key_c, locker);
+    mat4.identity(temp);
+    mat4.translate(temp, [ 0.0425,  -0.02, 0.01]);
+    mat4.multiply(temp, key.pos_rel, key.pos_rel);
+	var key = create_object(key_v, key_c, locker);
+    mat4.identity(temp);
+    mat4.translate(temp, [ 0.0425,  -0.0625, 0.01]);
+    mat4.multiply(temp, key.pos_rel, key.pos_rel);
+	
     calculate_all_pos_abs();
     appply_all_pos_draw();
 }
