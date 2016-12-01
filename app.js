@@ -18,7 +18,7 @@ var app = express();
 // serve the files out of ./public as our main files
 app.use(express.static(__dirname + '/public'));
 
-app.post('/login'， function（req, resp) {
+app.post('/login', function(req, resp){
 
 });
 
