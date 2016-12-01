@@ -1,95 +1,201 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-<title>3D box room</title>
-<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
-<script type="text/javascript" src="three.min.js"></script>
-<script type="text/javascript" src="glMatrix-0.9.5.min.js"></script>
-<script type="text/javascript" src="webgl-utils.js"></script>
-<script type="text/javascript" src="tinynight.js"></script>
-<script type="text/javascript" src="assemblecube.js"></script>
-<script type="text/javascript" src="room.js"></script>
 
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
+    <title>Freelancer - Start Bootstrap Theme</title>
 
-<script id="shader-fs" type="x-shader/x-fragment">
-    precision mediump float;
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    varying vec4 vColor;
+    <!-- Theme CSS -->
+    <link href="css/freelancer.min.css" rel="stylesheet">
 
-    void main(void) {
-        gl_FragColor = vColor;
-    }
-</script>
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
-<script id="shader-vs" type="x-shader/x-vertex">
-    attribute vec3 aVertexPosition;
-    attribute vec4 aVertexColor;
-
-    uniform mat4 uMVMatrix;
-    uniform mat4 uPMatrix;
-
-    varying vec4 vColor;
-
-    void main(void) {
-        gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
-        vColor = aVertexColor;
-    }
-</script>
-
-
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="vendor/jquery/jquery.min.js"></script>
 
 </head>
 
+<body id="page-top" class="index">
 
-<body onload="webGLStart();">
-    WSAD to rotate.<br />
+    <!-- Navigation -->
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" id="re" href="#page-top">Welcome to Escape</a>
+            </div>
 
-    <div style="position: relative;">
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#"></a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#signupsection" id="signup">Sign up</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#loginsection" id="login">log in</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
 
-        <canvas id="lesson01-canvas" style="border: none; position: absolute; left: 0; top: 0; z-index: 1; background-color:grey;" width="1300%" height="600"></canvas>
-        <section id="login" style="border: none; position: absolute; left: 0; top: 0; z-index: 2">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 text-center">
-                        <h2>Log in</h2>
-                        <hr class="star-primary">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
-                        <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
-                        <form name="sentMessage" id="contactForm" novalidate>
-                            <div class="row control-group">
-                                <div class="form-group col-xs-12 floating-label-form-group controls">
-                                    <label>User name</label>
-                                    <input type="text" class="form-control" placeholder="username">
-                                    <!-- <p class="help-block text-danger"></p> -->
-                                </div>
-                            </div>
-                            <div class="row control-group">
-                                <div class="form-group col-xs-12 floating-label-form-group controls">
-                                    <label>password</label>
-                                    <input type="text" class="form-control" placeholder="password">
-                                    <!-- <p class="help-block text-danger"></p> -->
-                                </div>
-                            </div>
-                            
-                            <br>
-                            <div id="success"></div>
-                            <div class="row">
-                                <div class="form-group col-xs-12">
-                                    <button type="submit" class="btn btn-success btn-lg">Login</button>
-                                </div>
-                            </div>
-                        </form>
+    <!-- Header -->
+    <header>
+        <div class="container" id="head">
+            <div class="row">
+                <div class="col-lg-12">
+                    <img class="img-responsive" src="img/key.png" alt="">
+                    <div class="intro-text">
+                        <span class="name">Escape the Room</span>
+                        <hr class="star-light">
+                        <span class="skills">CS 252 Lab 6</span>
                     </div>
                 </div>
             </div>
-        </section>
-        <canvas id="lesson02-canvas" style="border: none; position: absolute; left: 0; top: 0; z-index: 0;" width="1300%" height="600"></canvas>
-    </div>
+        </div>
+    </header>
+    
+
+    <!-- Sign up Section -->
+    <section id="loginsection">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Log in</h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
+                    <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
+                    <form name="sentMessage" id="contactForm" action="/login" method="POST">
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>User name</label>
+                                <input type="text" class="form-control" name="username" placeholder="username">
+                                
+                            </div>
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>Password</label>
+                                <input type="password" class="form-control" placeholder="password">
+                                <!-- <p class="help-block text-danger"></p> -->  
+                            </div>
+                        </div>    
+                        
+                        <br>
+                        <div id="success"></div>
+                        <div class="row">
+                            <div class="form-group col-xs-12">
+                                <button type="submit" class="btn btn-success btn-lg">Login</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+<!-- sign up section -->
+<section id="signupsection">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Sign up</h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
+                    <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
+                    <form name="sentMessage" id="contactForm" novalidate>
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>User name</label>
+                                <input type="text" class="form-control" placeholder="username">
+                                <!-- <p class="help-block text-danger"></p> -->
+
+                            </div>
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>Password</label>
+                                <input type="password" class="form-control" placeholder="password">
+                                <!-- <p class="help-block text-danger"></p> -->
+                                
+                            </div>
+                        </div>
+                        
+                        <br>
+                        <div id="success"></div>
+                        <div class="row">
+                            <div class="form-group col-xs-12">
+                                <button formaction="index.html" class="btn btn-success btn-lg">Register</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+   
+
+    <!-- jQuery -->
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+
+    <script>
+        $( "#signupsection" ).hide();
+        $( "#loginsection" ).hide();
+        $( "#signup" ).click(function() {
+          $( "#signupsection" ).show( "fast" );
+          $( "#loginsection" ).hide();
+          $('#head').hide();
+        });
+        $( "#login" ).click(function() {
+          $( "#loginsection" ).show( "fast" );
+          $( "#signupsection" ).hide();
+          $('#head').hide();
+        });
+        $( "#re" ).click(function() {
+            $('#head').show("fast");
+            $( "#loginsection" ).show( "fast" );
+            $( "#signupsection" ).hide();
+        });
+    </script>
+
 </body>
 
 </html>
