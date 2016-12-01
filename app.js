@@ -11,12 +11,29 @@ var express = require('express');
 // cfenv provides access to your Cloud Foundry environment
 // for more info, see: https://www.npmjs.com/package/cfenv
 var cfenv = require('cfenv');
-
+var mysql = require('mysql');
 // create a new express server
 var app = express();
 var router = express.Router();
 
 var bodyParser = require('body-parser');
+
+
+var connection = mysql.createConnection({
+	host: 'localhost',
+	user: 'root',
+	password: '',
+	database: 'sampleDB'
+});
+
+connection.connect(function(error) {
+	if (!!error) {
+		console.log("error");
+	} else {
+		console.log("Connected");
+	}
+})
+
 
 app.use(bodyParser());
 
