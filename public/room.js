@@ -249,6 +249,7 @@ function drawScene() {
 }
 
 function webGLStart() {
+    var foreground = document.getElementById("lesson01-canvas").getContext('2d');
     var canvas = document.getElementById("lesson02-canvas");
     initGL(canvas);
     initShaders();

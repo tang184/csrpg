@@ -44,7 +44,52 @@
 
 <body onload="webGLStart();">
     WSAD to rotate.<br />
-    <canvas id="lesson02-canvas" style="border: none;" width="1300%" height="600"></canvas>
+
+    <div style="position: relative;">
+
+        <canvas id="lesson01-canvas" style="border: none; position: absolute; left: 0; top: 0; z-index: 1; background-color:grey;" width="1300%" height="600"></canvas>
+        <section id="login" style="border: none; position: absolute; left: 0; top: 0; z-index: 2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2>Log in</h2>
+                        <hr class="star-primary">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
+                        <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
+                        <form name="sentMessage" id="contactForm" novalidate>
+                            <div class="row control-group">
+                                <div class="form-group col-xs-12 floating-label-form-group controls">
+                                    <label>User name</label>
+                                    <input type="text" class="form-control" placeholder="username">
+                                    <!-- <p class="help-block text-danger"></p> -->
+                                </div>
+                            </div>
+                            <div class="row control-group">
+                                <div class="form-group col-xs-12 floating-label-form-group controls">
+                                    <label>password</label>
+                                    <input type="text" class="form-control" placeholder="password">
+                                    <!-- <p class="help-block text-danger"></p> -->
+                                </div>
+                            </div>
+                            
+                            <br>
+                            <div id="success"></div>
+                            <div class="row">
+                                <div class="form-group col-xs-12">
+                                    <button type="submit" class="btn btn-success btn-lg">Login</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <canvas id="lesson02-canvas" style="border: none; position: absolute; left: 0; top: 0; z-index: 0;" width="1300%" height="600"></canvas>
+    </div>
 </body>
 
 </html>
