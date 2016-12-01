@@ -28,6 +28,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script src="vendor/jquery/jquery.min.js"></script>
 
 </head>
 
@@ -41,20 +42,20 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="#page-top">Welcome to Escape</a>
+                <a class="navbar-brand" id="re" href="#page-top">Welcome to Escape</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="hidden">
-                        <a href="#page-top"></a>
+                        <a href="#"></a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#signup">Sign up</a>
+                        <a href="#signupsection" id="signup">Sign up</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#login">log in</a>
+                        <a href="#loginsection" id="login">log in</a>
                     </li>
                 </ul>
             </div>
@@ -64,8 +65,8 @@
     </nav>
 
     <!-- Header -->
-     <header>
-        <div class="container">
+    <header>
+        <div class="container" id="head">
             <div class="row">
                 <div class="col-lg-12">
                     <img class="img-responsive" src="img/key.png" alt="">
@@ -78,9 +79,10 @@
             </div>
         </div>
     </header>
+    
 
     <!-- Sign up Section -->
-    <section id="login">
+    <section id="loginsection">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -97,16 +99,16 @@
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>User name</label>
                                 <input type="text" class="form-control" placeholder="username">
-                                <!-- <p class="help-block text-danger"></p> -->
+                                
                             </div>
-                        </div>
-                        <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>password</label>
-                                <input type="text" class="form-control" placeholder="password">
+                                <label>Password</label>
+                                <input type="password" class="form-control" placeholder="password">
                                 <!-- <p class="help-block text-danger"></p> -->
+                                
                             </div>
                         </div>
+                        
                         
                         <br>
                         <div id="success"></div>
@@ -123,7 +125,7 @@
 
 
 <!-- sign up section -->
-<section id="signup">
+<section id="signupsection">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -141,13 +143,13 @@
                                 <label>User name</label>
                                 <input type="text" class="form-control" placeholder="username">
                                 <!-- <p class="help-block text-danger"></p> -->
+
                             </div>
-                        </div>
-                        <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>password</label>
-                                <input type="text" class="form-control" placeholder="password">
+                                <label>Password</label>
+                                <input type="password" class="form-control" placeholder="password">
                                 <!-- <p class="help-block text-danger"></p> -->
+                                
                             </div>
                         </div>
                         
@@ -163,53 +165,7 @@
             </div>
         </div>
     </section>
-    <!-- Footer -->
-    <footer class="text-center">
-        <div class="footer-above">
-            <div class="container">
-                <div class="row">
-                    <div class="footer-col col-md-4">
-                        <h3>Location</h3>
-                        <p>3481 Melrose Place
-                            <br>Beverly Hills, CA 90210</p>
-                    </div>
-                    <div class="footer-col col-md-4">
-                        <h3>Around the Web</h3>
-                        <ul class="list-inline">
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-dribbble"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="footer-col col-md-4">
-                        <h3>About Freelancer</h3>
-                        <p>Freelance is a free to use, open source Bootstrap theme created by <a href="http://startbootstrap.com">Start Bootstrap</a>.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-below">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        Copyright &copy; Your Website 2016
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    
 
     <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
     <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
@@ -221,7 +177,6 @@
    
 
     <!-- jQuery -->
-    <script src="vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -229,12 +184,26 @@
     <!-- Plugin JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
-    <!-- Contact Form JavaScript -->
-    <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>
 
-    <!-- Theme JavaScript -->
-    <script src="js/freelancer.min.js"></script>
+    <script>
+        $( "#signupsection" ).hide();
+        $( "#loginsection" ).hide();
+        $( "#signup" ).click(function() {
+          $( "#signupsection" ).show( "fast" );
+          $( "#loginsection" ).hide();
+          $('#head').hide();
+        });
+        $( "#login" ).click(function() {
+          $( "#loginsection" ).show( "fast" );
+          $( "#signupsection" ).hide();
+          $('#head').hide();
+        });
+        $( "#re" ).click(function() {
+            $('#head').show("fast");
+            $( "#loginsection" ).show( "fast" );
+            $( "#signupsection" ).hide();
+        });
+    </script>
 
 </body>
 
