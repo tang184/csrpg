@@ -83,30 +83,35 @@ function initShaders() {
 
 var pMatrix = mat4.create();
 
+var room;
+var temp;
+var door;
 function init_scene() {
-    var temp = mat4.create();;
-    var room = new_cube(1, 1);
+    temp = mat4.create();;
+    room = new_cube(1, 1);
     
     mat4.identity(temp);
     // mat4.translate(temp, [0, 0, -8]);
     mat4.multiply(temp, room.pos_rel, room.pos_rel);
     // mat4.translate(openset_matrix, [ 0.0,  0.0,  8.0], openset_matrix);
 	
-    var door = create_object([
+    door = create_object([
          0.25,  0.5,  0.0, 
         -0.25,  0.5,  0.0, 
          0.25, -0.5,  0.0, 
         -0.25, -0.5,  0.0
-        ], [
+    ], [
          0.5, 0.2, 0.0, 1.0,
          0.5, 0.2, 0.0, 1.0,
          0.5, 0.2, 0.0, 1.0,
          0.5, 0.2, 0.0, 1.0
-        ], room);
+    ], room);
         
     mat4.identity(temp);
     mat4.translate(temp, [0.25, -0.5, -0.99]);
     mat4.multiply(temp, door.pos_rel, door.pos_rel);
+
+
     
     var wind = create_object([
          0.25,  0.25,  0.0, 
@@ -339,22 +344,40 @@ function handleKeyUp(event) {
 
 var lastMouseX = null;
 var lastMouseY = null;
+var doortimes;
+
 var openset_matrix = mat4.create();
 mat4.identity(openset_matrix);
+var walktodoor = false;
+var dooropen = false;
+
 
 function handleMouseDown(event) {
     lastMouseX = event.clientX;
     lastMouseY = event.clientY;
-    var currangle = totalangle % 783;
-    if (Math.abs(currangle) < 20 || (783-Math.abs(currangle)) < 20) {
-        console.log(true);
+    if (walktodoor) {
+        doortimes += 1;
+        if (doortimes ==  5) {
+            mat4.translate(openset_matrix, [ 0.0,  -0.3,  -0.8], openset_matrix);
+            walktodoor = false;
+            
+            doortimes = 0;
+        }
+        
     } else {
-        console.log(false);
+        var currangle = totalangle % 783;
+        if ((Math.abs(currangle) < 30 || (783-Math.abs(currangle)) < 30) && walktodoor == false) {
+            mat4.translate(openset_matrix, [ 0.0,  0.3,  0.8], openset_matrix);
+            walktodoor = true;
+            doortimes = 0;
+        } else {
+            console.log(lastMouseX);
+            console.log(lastMouseY);
+            console.log(false);
+        } 
     }
-    console.log(totalangle % 783);
+    
 
-    console.log("angle" + totalangle)
-    console.log(lastMouseX);
-    console.log(lastMouseY);
+
 }
 
