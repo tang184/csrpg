@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<body>
+<canvas id="Canvas_0" width="800" height="600" style="position:absolute; top:0;left:0 border:1px solid #d3d3d3;"></canvas>
+<canvas id="Canvas_1" width="800" height="600" style="position:absolute; top:0;left:0 border:1px solid #d3d3d3;"></canvas>
+
+<script type="text/javascript" src="doublebuff.js"></script>
+<script type="text/javascript" src="event.js"></script>
+<script type="text/javascript" src="image.js"></script>
+<script type="text/javascript" src="general.js"></script>
+<script type="text/javascript" src="map.js"></script>
+<script type="text/javascript" src="control.js"></script>
+<script type="text/javascript" src="content.js"></script>
+<script type="text/javascript" src="ticker.js"></script>
+<script type="text/javascript" src="connecter.js"></script>
+
+<script>
+function init_canvas(canvas) {
+	canvas.onmousedown = EventHandler.handleMouseDown;
+}
+	
+window.onload = function() {
+	DoubleBuff.init(document.getElementById("Canvas_0"), document.getElementById("Canvas_1"));
+	init_canvas(document.getElementById("Canvas_0"));
+	init_canvas(document.getElementById("Canvas_1"));
+	
+	
+	document.onkeydown = EventHandler.handleKeyDown;
+	document.onkeyup = EventHandler.handleKeyUp;
+	
+	document.onmouseup = EventHandler.handleMouseUp;
+	document.onmousemove = EventHandler.handleMouseMove;
+	
+	Connector.init("ws://127.0.0.1:12306");
+	MapHandler.init();
+	ControlHandler.init();
+}
+
+setInterval(update, 20);
+function update() {
+	var time_delta = Ticker.tick();
+	EventHandler.handleKeyTick(time_delta);
+	ContentHandler.tick(time_delta);
+	
+	MapHandler.draw();
+	ContentHandler.draw();
+	DoubleBuff.flip();
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>WebSocket demo</title>
+    </head>
+    <body>
+        <script>
+            var ws = new WebSocket("ws://127.0.0.1:8765");
+            ws.onmessage = function (event) {
+                console.log(document.createTextNode(event.data));
+				ws.send("Here's some text that the server is urgently awaiting!");
+            };
+			console.log("sent");
+        </script>
+    </body>
+</html>
