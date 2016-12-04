@@ -5,10 +5,6 @@ function initGL(canvas) {
         gl = canvas.getContext("experimental-webgl", {alpha:false});
         gl.viewportWidth = canvas.width;
         gl.viewportHeight = canvas.height;
-    	
-
-        
-
     } catch (e) {
 
     }
@@ -259,6 +255,7 @@ function webGLStart() {
     initGL(canvas);
     initShaders();
     init_scene();
+	TextureHandler.empty = TextureHandler.load("empty.gif");
 
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
     // gl.disable(gl.DEPTH_TEST);
