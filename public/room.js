@@ -87,7 +87,7 @@ var room;
 var temp;
 var door;
 function init_scene() {
-    temp = mat4.create();;
+    temp = mat4.create();
     room = new_cube(1, 1);
     
     mat4.identity(temp);
@@ -95,17 +95,23 @@ function init_scene() {
     mat4.multiply(temp, room.pos_rel, room.pos_rel);
     // mat4.translate(openset_matrix, [ 0.0,  0.0,  8.0], openset_matrix);
 	
+	var door_bar = create_virtual_object(room);
+	
+    mat4.identity(temp);
+    mat4.translate(temp, [0.0, 0.0, -0.99]);
+    mat4.multiply(temp, door_bar.pos_rel, door_bar.pos_rel);
+
     door = create_object([
-         0.25,  0.5,  0.0, 
-        -0.25,  0.5,  0.0, 
-         0.25, -0.5,  0.0, 
-        -0.25, -0.5,  0.0
+         0.5,  0.0,  0.0, 
+         0.0,  0.0,  0.0, 
+         0.5, -1.0,  0.0, 
+         0.0, -1.0,  0.0
     ], [
          0.5, 0.2, 0.0, 1.0,
          0.5, 0.2, 0.0, 1.0,
          0.5, 0.2, 0.0, 1.0,
          0.5, 0.2, 0.0, 1.0
-    ], room);
+    ], door_bar);
         
 	door.texture = TextureHandler.load("textures/door.gif");
 	set_texture_buffer(door, [
@@ -114,12 +120,11 @@ function init_scene() {
 		1.0, 0.0,
 		0.0, 0.0
 	]);
-	
+	/*
     mat4.identity(temp);
     mat4.translate(temp, [0.25, -0.5, -0.99]);
     mat4.multiply(temp, door.pos_rel, door.pos_rel);
-
-    
+	*/
     var wind = create_object([
          0.25,  0.25,  0.0, 
         -0.25,  0.25,  0.0, 
@@ -173,7 +178,7 @@ function init_scene() {
 		], door);
 		
     mat4.identity(temp);
-    mat4.translate(temp, [-0.125, 0.05, 0.01]);
+    mat4.translate(temp, [0.1, -0.45, 0.01]);
     mat4.multiply(temp, locker.pos_rel, locker.pos_rel);
 	
 	var key_v = [
@@ -246,9 +251,11 @@ function appply_all_pos_draw(offset) {
     for (id in objects) {
 	   appply_pos_draw(objects[id], offset);
     }
+	/*
     if (offset) {
 	   mat4.identity(offset);
     }
+	*/
 }
 
 function drawScene() {
@@ -374,7 +381,14 @@ function handleMouseDown(event) {
     } else {
         var currangle = totalangle % 783;
         if ((Math.abs(currangle) < 30 || (783-Math.abs(currangle)) < 30) && walktodoor == false) {
-            mat4.translate(openset_matrix, [ 0.0,  0.3,  0.8], openset_matrix);
+            // mat4.translate(openset_matrix, [ 0.0,  0.3,  0.8], openset_matrix);
+			
+			var temp = mat4.create();
+			mat4.identity(temp);
+			mat4.rotate(temp, -(Math.PI / 4 * 3), [0, 1, 0]);
+			mat4.multiply(temp, door.pos_rel, door.pos_rel);
+			calculate_all_pos_abs();
+			
             walktodoor = true;
             doortimes = 0;
         } else {

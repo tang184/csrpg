@@ -88,7 +88,7 @@ function create_virtual_object(parent_object) {
 		objects.push(object);
 	}
 	else {
-		parent_object.push(object);
+		parent_object.subobjects.push(object);
 	}
 		
 	return object;
@@ -116,10 +116,10 @@ function appply_pos_draw(object, offset) {
 	if (!object.pos_abs) {
 		calculate_pos_abs(object)
 	}
-	if (!object.pos_draw) {
-		object.pos_draw = mat4.create();
-		mat4.set(object.pos_abs, object.pos_draw);
-	}
+	
+	object.pos_draw = mat4.create();
+	mat4.set(object.pos_abs, object.pos_draw);
+
 	if (offset) {
 		mat4.multiply(offset, object.pos_draw, object.pos_draw);
 	}
