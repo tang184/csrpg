@@ -27,13 +27,26 @@ function set_color_buffer(object, input_colors) {
 	object.VertexColorBuffer = VertexColorBuffer;
 }
 
+function set_texture_buffer(object, input_text_vertices) {
+	var text_vertices = input_text_vertices.slice();
+    VertexTextureBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, VertexTextureBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(text_vertices), gl.STATIC_DRAW);
+    VertexTextureBuffer.itemSize = 2;
+    VertexTextureBuffer.numItems = Math.round(text_vertices.length / VertexTextureBuffer.itemSize);
+	
+	object.VertexTextureBuffer = VertexTextureBuffer;
+}
+
 function create_object(vertices, colors, parent_object) {
 	object = {};
 
 	object.vertices = vertices.slice();
 	object.colors = colors.slice();
-	update_object(object);
+	set_vertex_buffer(object, object.vertices);
+	set_color_buffer(object, object.colors);
 	set_default_textuare(object);
+	set_texture_buffer(object, object.text_vertices);
 	
 	object.pos_rel = mat4.create();
     mat4.identity(object.pos_rel);
@@ -50,16 +63,12 @@ function create_object(vertices, colors, parent_object) {
 	return object;
 }
 
-function update_object(object) {
-	set_vertex_buffer(object, object.vertices);
-	set_color_buffer(object, object.colors);
-}
-
 function set_default_textuare(object) {
 	var v_num = Math.floor(object.vertices.length / 3);
 	var text_vertices = [];
 	var i = 0;
 	while (i < v_num) {
+		text_vertices.push(Math.random());
 		text_vertices.push(Math.random());
 		i = i + 1;
 	}
@@ -131,6 +140,13 @@ function draw_object(object) {
 		gl.bindBuffer(gl.ARRAY_BUFFER, object.VertexColorBuffer);
 		gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, object.VertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
+        gl.bindBuffer(gl.ARRAY_BUFFER, object.VertexTextureBuffer);
+        gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, VertexTextureBuffer.itemSize, gl.FLOAT, false, 0, 0);
+
+        gl.activeTexture(gl.TEXTURE0);
+        gl.bindTexture(gl.TEXTURE_2D, object.texture);
+        gl.uniform1i(shaderProgram.samplerUniform, 0);
+		
 		setMatrixUniforms(mvMatrix);
 		// gl.drawArrays(gl.TRIANGLES, 0, object.VertexPositionBuffer.numItems);
 		gl.drawArrays(gl.TRIANGLE_STRIP, 0, object.VertexPositionBuffer.numItems);

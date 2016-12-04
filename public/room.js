@@ -72,9 +72,13 @@ function initShaders() {
 
     shaderProgram.vertexColorAttribute = gl.getAttribLocation(shaderProgram, "aVertexColor");
     gl.enableVertexAttribArray(shaderProgram.vertexColorAttribute);
-
+	
+    shaderProgram.textureCoordAttribute = gl.getAttribLocation(shaderProgram, "aTextureCoord");
+    gl.enableVertexAttribArray(shaderProgram.textureCoordAttribute);
+	
     shaderProgram.pMatrixUniform = gl.getUniformLocation(shaderProgram, "uPMatrix");
     shaderProgram.mvMatrixUniform = gl.getUniformLocation(shaderProgram, "uMVMatrix");
+    shaderProgram.samplerUniform = gl.getUniformLocation(shaderProgram, "uSampler");
 }
 
 var pMatrix = mat4.create();
