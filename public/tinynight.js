@@ -73,7 +73,7 @@ function set_default_textuare(object) {
 		i = i + 1;
 	}
 	object.text_vertices = text_vertices;
-	object.texture = TextureHandler.load("empty.gif");
+	object.texture = TextureHandler.load("textures/empty.gif");
 }
 
 function create_virtual_object(parent_object) {

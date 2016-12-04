@@ -107,10 +107,17 @@ function init_scene() {
          0.5, 0.2, 0.0, 1.0
     ], room);
         
+	door.texture = TextureHandler.load("textures/door.gif");
+	set_texture_buffer(door, [
+		1.0, 1.0,
+		0.0, 1.0,
+		1.0, 0.0,
+		0.0, 0.0
+	]);
+	
     mat4.identity(temp);
     mat4.translate(temp, [0.25, -0.5, -0.99]);
     mat4.multiply(temp, door.pos_rel, door.pos_rel);
-
 
     
     var wind = create_object([
