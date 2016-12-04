@@ -10,10 +10,6 @@ TextureHandler.load = function(filename) {
     var texture = gl.createTexture();
 	texture.image = new Image();
     texture.image.onload = function () {
-		// draw test texutres
-		var canvas = document.getElementById("test-canvas");
-		var ctx = canvas.getContext("2d");
-		ctx.drawImage(texture.image, 0, 0);
 		
 		gl.bindTexture(gl.TEXTURE_2D, texture);
 		gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
