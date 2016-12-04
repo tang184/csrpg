@@ -29,9 +29,12 @@ function set_color_buffer(object, input_colors) {
 
 function create_object(vertices, colors, parent_object) {
 	object = {};
-	set_vertex_buffer(object, vertices);
-	set_color_buffer(object, colors);
-		
+
+	object.vertices = vertices.slice();
+	object.colors = colors.slice();
+	update_object(object);
+	set_default_textuare(object);
+	
 	object.pos_rel = mat4.create();
     mat4.identity(object.pos_rel);
 	
@@ -45,6 +48,23 @@ function create_object(vertices, colors, parent_object) {
 	}
 		
 	return object;
+}
+
+function update_object(object) {
+	set_vertex_buffer(object, object.vertices);
+	set_color_buffer(object, object.colors);
+}
+
+function set_default_textuare(object) {
+	var v_num = Math.floor(object.vertices.length / 3);
+	var text_vertices = [];
+	var i = 0;
+	while (i < v_num) {
+		text_vertices.push(Math.random());
+		i = i + 1;
+	}
+	object.text_vertices = text_vertices;
+	object.texture = TextureHandler.load("empty.gif");
 }
 
 function create_virtual_object(parent_object) {
