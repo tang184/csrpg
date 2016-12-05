@@ -1,0 +1,70 @@
+5 5 3 4
+1 1 1 1
+1 3 1 1
+1 1 1 1 1 (z = 0) (w = 0)
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1 (z = 1)
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1 (z = 2)
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1 (z = 0) (w = 1)
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1 (z = 1)
+1 0 0 0 1
+1 1 1 1 1
+1 0 0 0 1
+1 1 1 1 1
+1 1 1 1 1 (z = 2)
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1 (z = 0) (w = 2)
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1 (z = 1)
+1 1 1 0 1
+1 1 1 0 1
+1 1 1 0 1
+1 1 1 1 1
+1 1 1 1 1 (z = 2)
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1 (z = 0) (w = 3)
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1 (z = 1)
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1 (z = 2)
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
+3
+1 1 1 1
+This time you will learn time traveling.
+3 1 1 1
+Woops, there is no path. Try to use "T(right)" to go to the future. Things in the future will be red, and the past was green.
+3 3 1 2
+Now you cannot go to the next second because there will be wall. But there was no wall if you use "G(left)" to go to the past.
