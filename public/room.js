@@ -473,7 +473,7 @@ function handleMouseDown(event) {
     if (dooropen) {
         var currangle = totalangle % 783;
         if (Math.abs(currangle) < 30 || (783-Math.abs(currangle)) < 30) {
-            $(location).attr('href', '/');
+            $(location).attr('href', 'https://yakume.xyz/game');
         }
     } else {
         if (walktodoor) {
