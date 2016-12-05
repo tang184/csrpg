@@ -139,6 +139,7 @@ function init_scene() {
     mat4.translate(temp, [0.25, -0.5, -0.99]);
     mat4.multiply(temp, door.pos_rel, door.pos_rel);
 	*/
+	
     var wind = create_object([
          0.25,  0.25,  0.0, 
         -0.25,  0.25,  0.0, 
@@ -152,11 +153,52 @@ function init_scene() {
         ], room);
         
     mat4.identity(temp);
-    mat4.rotate(temp, 3.14 / 2, [0, 1, 0]);
+    mat4.translate(temp, [0, 0, -0.99]);
+    mat4.multiply(temp, wind.pos_rel, wind.pos_rel);
+    mat4.identity(temp);
+    mat4.rotate(temp, 3.14 / 2 * 1, [0, 1, 0]);
     mat4.multiply(temp, wind.pos_rel, wind.pos_rel);
 
+
+    var picture = create_object([
+         0.20,  0.20,  0.0, 
+        -0.20,  0.20,  0.0, 
+         0.20, -0.20,  0.0, 
+        -0.20, -0.20,  0.0
+        ], [
+         1.0, 1.0, 1.0, 1.0,
+         1.0, 1.0, 1.0, 1.0,
+         1.0, 1.0, 1.0, 1.0,
+         1.0, 1.0, 1.0, 1.0
+        ], wind);
+
+    picture.texture = TextureHandler.load("textures/cake.png");
+    set_texture_buffer(picture, [
+        1.0, 1.0,
+        0.0, 1.0,
+        1.0, 0.0,
+        0.0, 0.0
+    ]);
+	
+	
+    var wind = create_object([
+         0.25,  0.25,  0.0, 
+        -0.25,  0.25,  0.0, 
+         0.25, -0.25,  0.0, 
+        -0.25, -0.25,  0.0
+        ], [
+         0.5, 0.2, 0.0, 1.0,
+         0.5, 0.2, 0.0, 1.0,
+         0.5, 0.2, 0.0, 1.0,
+         0.5, 0.2, 0.0, 1.0
+        ], room);
+
     mat4.identity(temp);
-    mat4.translate(temp, [-0.99, 0, 0]);
+    mat4.translate(temp, [0, 0, -0.99]);
+    mat4.multiply(temp, wind.pos_rel, wind.pos_rel);
+        
+    mat4.identity(temp);
+    mat4.rotate(temp, 3.14 / 2 * 2, [0, 1, 0]);
     mat4.multiply(temp, wind.pos_rel, wind.pos_rel);
 
     var picture = create_object([
@@ -169,9 +211,50 @@ function init_scene() {
          1.0, 1.0, 1.0, 1.0,
          1.0, 1.0, 1.0, 1.0,
          1.0, 1.0, 1.0, 1.0
-        ], room);
+        ], wind);
 
-    picture.texture = TextureHandler.load("textures/cake.png");
+    picture.texture = TextureHandler.load("textures/game.png");
+    set_texture_buffer(picture, [
+        1.0, 1.0,
+        0.0, 1.0,
+        1.0, 0.0,
+        0.0, 0.0
+    ]);
+	
+	
+    var wind = create_object([
+         0.25,  0.25,  0.0, 
+        -0.25,  0.25,  0.0, 
+         0.25, -0.25,  0.0, 
+        -0.25, -0.25,  0.0
+        ], [
+         0.5, 0.2, 0.0, 1.0,
+         0.5, 0.2, 0.0, 1.0,
+         0.5, 0.2, 0.0, 1.0,
+         0.5, 0.2, 0.0, 1.0
+        ], room);
+        
+    mat4.identity(temp);
+    mat4.translate(temp, [0, 0, -0.99]);
+    mat4.multiply(temp, wind.pos_rel, wind.pos_rel);
+    mat4.identity(temp);
+    mat4.rotate(temp, 3.14 / 2 * 3, [0, 1, 0]);
+    mat4.multiply(temp, wind.pos_rel, wind.pos_rel);
+
+
+    var picture = create_object([
+         0.20,  0.20,  0.0, 
+        -0.20,  0.20,  0.0, 
+         0.20, -0.20,  0.0, 
+        -0.20, -0.20,  0.0
+        ], [
+         1.0, 1.0, 1.0, 1.0,
+         1.0, 1.0, 1.0, 1.0,
+         1.0, 1.0, 1.0, 1.0,
+         1.0, 1.0, 1.0, 1.0
+        ], wind);
+
+    picture.texture = TextureHandler.load("textures/submarine.png");
     set_texture_buffer(picture, [
         1.0, 1.0,
         0.0, 1.0,
@@ -180,11 +263,7 @@ function init_scene() {
     ]);
 
     mat4.identity(temp);
-    mat4.rotate(temp, 3.14 / 2, [0, 1, 0]);
-    mat4.multiply(temp, picture.pos_rel, picture.pos_rel);
-
-    mat4.identity(temp);
-    mat4.translate(temp, [-0.99, 0, 0]);
+    mat4.translate(temp, [0, 0, 0.01]);
     mat4.multiply(temp, picture.pos_rel, picture.pos_rel);
 
 	var locker = create_object([
