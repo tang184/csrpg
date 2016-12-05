@@ -101,6 +101,18 @@ function init_scene() {
     mat4.translate(temp, [0.0, 0.0, -0.99]);
     mat4.multiply(temp, door_bar.pos_rel, door_bar.pos_rel);
 
+    var door2 = create_object([
+         0.5,  0.0,  0.0, 
+         0.0,  0.0,  0.0, 
+         0.5, -1.0,  0.0, 
+         0.0, -1.0,  0.0
+    ], [
+         0.0, 0.0, 0.0, 1.0,
+         0.0, 0.0, 0.0, 1.0,
+         0.0, 0.0, 0.0, 1.0,
+         0.0, 0.0, 0.0, 1.0
+    ], door_bar);
+
     door = create_object([
          0.5,  0.0,  0.0, 
          0.0,  0.0,  0.0, 
@@ -112,6 +124,8 @@ function init_scene() {
          0.5, 0.2, 0.0, 1.0,
          0.5, 0.2, 0.0, 1.0
     ], door_bar);
+
+    
         
 	door.texture = TextureHandler.load("textures/door.gif");
 	set_texture_buffer(door, [
@@ -331,10 +345,10 @@ function handleKeys(time_delta) {
 
 
     if (currentlyPressedKeys[83]) {
-        mat4.rotate(openset_matrix, (time_delta)*100 / 500, [1, 0, 0]);
+        mat4.rotate(openset_matrix, (time_delta)*200 / 500, [1, 0, 0]);
     }
     if (currentlyPressedKeys[87]) {
-        mat4.rotate(openset_matrix, -(time_delta)*100 / 500, [1, 0, 0]);
+        mat4.rotate(openset_matrix, -(time_delta)*200 / 500, [1, 0, 0]);
     }
     if (currentlyPressedKeys[68]) {
         mat4.rotate(openset_matrix, (time_delta)*400 / 500, [0, 1, 0]);
@@ -369,35 +383,35 @@ var dooropen = false;
 function handleMouseDown(event) {
     lastMouseX = event.clientX;
     lastMouseY = event.clientY;
-    if (walktodoor) {
-        doortimes += 1;
-        if (doortimes ==  5) {
-            mat4.translate(openset_matrix, [ 0.0,  -0.3,  -0.8], openset_matrix);
-            walktodoor = false;
-            
-            doortimes = 0;
-        }
-        
-    } else {
+    if (dooropen) {
         var currangle = totalangle % 783;
-        if ((Math.abs(currangle) < 30 || (783-Math.abs(currangle)) < 30) && walktodoor == false) {
-            // mat4.translate(openset_matrix, [ 0.0,  0.3,  0.8], openset_matrix);
-			
-			var temp = mat4.create();
-			mat4.identity(temp);
-			mat4.rotate(temp, -(Math.PI / 4 * 3), [0, 1, 0]);
-			mat4.multiply(temp, door.pos_rel, door.pos_rel);
-			calculate_all_pos_abs();
-			
-            walktodoor = true;
-            doortimes = 0;
+        if (Math.abs(currangle) < 30 || (783-Math.abs(currangle)) < 30) {
+            $(location).attr('href', '/');
+        }
+    } else {
+        if (walktodoor) {
+            doortimes += 1;
+            if (doortimes ==  5) {
+                var temp = mat4.create();
+                mat4.identity(temp);
+                mat4.rotate(temp, -(Math.PI * 9 / 10), [0, 1, 0]);
+                mat4.multiply(temp, door.pos_rel, door.pos_rel);
+                calculate_all_pos_abs();
+                mat4.translate(openset_matrix, [ 0.0,  -0.3,  -0.8], openset_matrix);
+
+                walktodoor = false;
+                dooropen = true;          
+            }       
         } else {
-            console.log(lastMouseX);
-            console.log(lastMouseY);
-            console.log(false);
-        } 
-    }
-    
+            var currangle = totalangle % 783;
+            if ((Math.abs(currangle) < 30 || (783-Math.abs(currangle)) < 30) && walktodoor == false) {
+                mat4.translate(openset_matrix, [ 0.0,  0.3,  0.8], openset_matrix);     
+                walktodoor = true;
+                doortimes = 0;
+            } 
+        }
+
+    }    
 
 
 }

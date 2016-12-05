@@ -15,15 +15,14 @@ var mysql = require('mysql');
 // create a new express server
 var app = express();
 var router = express.Router();
-
+var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 
 
 var connection = mysql.createConnection({
-	host: 'localhost',
-	user: 'root',
-	password: '',
-	database: 'sampleDB'
+	host: 'us-cdbr-iron-east-04.cleardb.net',
+	user: 'b1741feb7c0982',
+	password: '469100d6',
 });
 
 connection.connect(function(error) {
