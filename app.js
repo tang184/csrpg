@@ -62,6 +62,20 @@ app.get('/game', function(req, resp){
 	resp.sendfile('public/game1.html');
 });
 
+app.get('/game2', function(req, resp){
+	resp.sendfile('https://yakume.xyz/game');
+});
+
+app.post('/submitscore', function(req, resp){
+	var post  = {user: "hi" , score: req.body.score};
+	var query = connection.query('INSERT INTO test SET ?', post, function(err, result) {
+		if (!!err) {
+			resp.send("Submit score error");
+		}
+	})
+	resp.redirect('/game2');
+});
+
 
 app.post('/login', function(req, resp){
 
