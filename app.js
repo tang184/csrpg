@@ -23,6 +23,7 @@ var connection = mysql.createConnection({
 	host: 'us-cdbr-iron-east-04.cleardb.net',
 	user: 'b1741feb7c0982',
 	password: '469100d6',
+	database: 'ad_18cfb6c1d43882b'
 });
 
 connection.connect(function(error) {
@@ -49,12 +50,29 @@ app.post('/login', function(req, resp){
 	//resp.sendfile('public/index.html');
 	//resp.end();
 	//resp.end(JSON.stringify(req.body));
+	connection.query("SELECT * FROM test", function(err, rows, fields) {
+		if (!!err) {
+			console.log("error in the query");
+		} else {
+			console.log(rows);
+			var find = false;
+			for (var i = 0; i < rows.length; i++) {
+				if (rows[i].user == req.body.username && rows[i].password == req.body.password) {
+					find = true;
+				}
+			}
+			if (find) {
+				resp.redirect('/game');
+			} else {
+				resp.redirect('/');
+			}
+			
+		}
+	});
+});
 
-	if (req.body.username=="abc") {
-		resp.redirect('/game');
-	} else {
-		resp.sendfile('public/index.html');
-	}
+app.get('/', function(req, resp){
+	resp.sendfile('public/index.html');
 });
 
 app.post('/', function(req, resp){
