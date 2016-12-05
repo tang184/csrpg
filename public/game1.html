@@ -49,23 +49,77 @@
 </head>
 
 
-<body onload="webGLStart();">
+<body id="mainboard" onload="webGLStart();">
     WSAD to rotate.<br />
 
     <div style="position: relative;">
-
-        <!--<section id="login" style="border: none; position: absolute; left: 0; top: 0; z-index: 2">
+        
+        <section style="border: none; position: absolute; left: 0; top: 0; z-index: 2">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <h2>Log in</h2>
-                        <hr class="star-primary">
+                        <div>
+                            <input type="button" id="button" value="Start Game" />
+                        </div>
+                        <div id ="time" class="time"></div>
+                        <div id = "time" style="float:right"></div>
                     </div>
-                </div>
-                
+                </div>                
             </div>
-        </section>-->
+        </section>
         <canvas id="lesson02-canvas" style="border: none; position: absolute; left: 0; top: 0; z-index: 0;" width="1300%" height="600"></canvas>
+
+        
+
+        <script>
+            var startTime;
+
+            function display() {
+                // later record end time
+                var endTime = new Date();
+
+                // time difference in ms
+                var timeDiff = endTime - startTime;
+
+                // strip the miliseconds
+                timeDiff /= 1000;
+
+                // get seconds
+                var seconds = Math.round(timeDiff % 60);
+
+                // remove seconds from the date
+                timeDiff = Math.floor(timeDiff / 60);
+
+                // get minutes
+                var minutes = Math.round(timeDiff % 60);
+
+                // remove minutes from the date
+                timeDiff = Math.floor(timeDiff / 60);
+
+                // get hours
+                var hours = Math.round(timeDiff % 24);
+
+                // remove hours from the date
+                timeDiff = Math.floor(timeDiff / 24);
+
+                // the rest of timeDiff is number of days
+                var days = timeDiff;
+
+                $(".time").text(days + " days, " + hours + ":" + minutes + ":" + seconds);
+                setTimeout(display, 1000);
+            }
+
+            $("input#button").click(function () {
+                $("#lesson02-canvas").show();
+                $("input#button").hide();
+                $("#time").show();
+                startTime = new Date();
+                setTimeout(display, 1000);
+            });
+
+            $("#lesson02-canvas").hide();
+            $("#time").hide();
+        </script>
     </div>
 </body>
 

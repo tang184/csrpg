@@ -171,6 +171,14 @@ function init_scene() {
          1.0, 1.0, 1.0, 1.0
         ], room);
 
+    picture.texture = TextureHandler.load("textures/cake.png");
+    set_texture_buffer(picture, [
+        1.0, 1.0,
+        0.0, 1.0,
+        1.0, 0.0,
+        0.0, 0.0
+    ]);
+
     mat4.identity(temp);
     mat4.rotate(temp, 3.14 / 2, [0, 1, 0]);
     mat4.multiply(temp, picture.pos_rel, picture.pos_rel);
