@@ -71,6 +71,16 @@ app.post('/login', function(req, resp){
 	});
 });
 
+app.post('/signup', function(req, resp) {
+	var post  = {user: req.body.username , password: req.body.password};
+	var query = connection.query('INSERT INTO test SET ?', post, function(err, result) {
+		if (!!err) {
+			console.log(err);
+		}
+	})
+	resp.redirect('/');
+})
+
 app.get('/', function(req, resp){
 	resp.sendfile('public/index.html');
 });
