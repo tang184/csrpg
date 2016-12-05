@@ -72,13 +72,35 @@ app.post('/login', function(req, resp){
 });
 
 app.post('/signup', function(req, resp) {
-	var post  = {user: req.body.username , password: req.body.password};
-	var query = connection.query('INSERT INTO test SET ?', post, function(err, result) {
+	var find = false;
+	connection.query("SELECT user FROM test", function(err, rows, fields) {
 		if (!!err) {
-			console.log(err);
+			console.log("error in the query");
+		} else {
+			console.log(rows);
+			for (var i = 0; i < rows.length; i++) {
+				console.log(rows[i].user);
+				console.log(req.body.username);
+				if (rows[i].user == req.body.username) {
+					find = true;
+				}
+			}
+			if (!find) {
+				var post  = {user: req.body.username , password: req.body.password};
+				var query = connection.query('INSERT INTO test SET ?', post, function(err, result) {
+					if (!!err) {
+						resp.send("username already exist, find a new username");
+					}
+				})
+				resp.redirect('/');
+			} else {
+				resp.send("username already exist, find a new username");
+			}
+			
 		}
-	})
-	resp.redirect('/');
+	});
+	
+	
 })
 
 app.get('/', function(req, resp){
@@ -87,7 +109,7 @@ app.get('/', function(req, resp){
 
 app.post('/', function(req, resp){
 
-		resp.sendfile('public/index.html');
+	resp.sendfile('public/index.html');
 });
 
 
