@@ -160,7 +160,7 @@ function webGLStart() {
     document.onmousemove = handleMouseMove;
 	
 	// Connector.init("ws://localhost:12315");
-	// Connector.init("ws://yakume.xyz:12315");
+	Connector.init("ws://yakume.xyz:12315");
 
 	ScoreBoard.init();
     tick();
