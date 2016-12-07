@@ -96,7 +96,7 @@ app.post('/login', function(req, resp){
 			if (find) {
 				resp.redirect('/game');
 			} else {
-				resp.redirect('/');
+				resp.send("username and password not match");
 			}
 			
 		}
