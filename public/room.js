@@ -479,7 +479,7 @@ function handleMouseDown(event) {
             });
 
 
-            $(location).attr('href', 'https://yakume.xyz/game');
+            $(location).attr('href', 'https://yakume.xyz/game2');
 
 
         }
