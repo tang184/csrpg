@@ -1,0 +1,76 @@
+<html>
+
+<head>
+<title>3D box room</title>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<script type="text/javascript" src="three.min.js"></script>
+<script type="text/javascript" src="https://yakume.xyz/game2/glMatrix-0.9.5.min.js"></script>
+<script type="text/javascript" src="https://yakume.xyz/game2/webgl-utils.js"></script>
+<script type="text/javascript" src="https://yakume.xyz/game2/tinynight.js"></script>
+<script type="text/javascript" src="https://yakume.xyz/game2/assemblecube.js"></script>
+<script type="text/javascript" src="https://yakume.xyz/game2/room.js"></script>
+<script type="text/javascript" src="https://yakume.xyz/game2/textures.js"></script>
+<script type="text/javascript" src="https://yakume.xyz/game2/map.js"></script>
+<script type="text/javascript" src="https://yakume.xyz/game2/scoreboard.js"></script>
+<script type="text/javascript" src="https://yakume.xyz/game2/connecter.js"></script>
+<script type="text/javascript" src="vendor/jquery/jquery.min.js"></script>
+
+
+<script id="shader-fs" type="x-shader/x-fragment">
+    precision mediump float;
+
+    varying vec4 vColor;
+    varying vec2 vTextureCoord;
+	
+    uniform sampler2D uSampler;
+	
+    void main(void) {
+        gl_FragColor = vColor * texture2D(uSampler, vec2(vTextureCoord.s, vTextureCoord.t));
+    }
+</script>
+
+<script id="shader-vs" type="x-shader/x-vertex">
+    attribute vec3 aVertexPosition;
+    attribute vec4 aVertexColor;
+    attribute vec2 aTextureCoord;
+
+    uniform mat4 uMVMatrix;
+    uniform mat4 uPMatrix;
+
+    varying vec4 vColor;
+    varying vec2 vTextureCoord;
+
+    void main(void) {
+        gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
+        vColor = aVertexColor;
+        vTextureCoord = aTextureCoord;
+    }
+</script>
+
+
+
+</head>
+
+
+<body onload="webGLStart();">
+    WSAD to rotate.<br />
+
+    <div style="position: relative;">
+
+        <!--<section id="login" style="border: none; position: absolute; left: 0; top: 0; z-index: 2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2>Log in</h2>
+                        <hr class="star-primary">
+                    </div>
+                </div>
+                
+            </div>
+        </section>-->
+        <canvas id="lesson02-canvas" style="border: none; position: absolute; left: 0; top: 0; z-index: 0;" width="800" height="800"></canvas>
+        <canvas id="scoreboard-canvas" style="border: none; position: absolute; left: 800; top: 0; z-index: 0;" width="200" height="800"></canvas>
+    </div>
+</body>
+
+</html>

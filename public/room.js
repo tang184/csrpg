@@ -478,15 +478,6 @@ function handleMouseDown(event) {
                 score : 100
             });
 
-            $.ajax({
-                type: "POST",
-                url: '/submitscore',
-                data: mydata,
-                success: function(response){
-                    
-                }
-            });
-
 
             $(location).attr('href', 'https://yakume.xyz/game');
 

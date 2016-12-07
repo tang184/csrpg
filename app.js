@@ -67,12 +67,12 @@ app.get('/game2', function(req, resp){
 });
 
 app.post('/submitscore', function(req, resp){
-	var post  = {user: "hi" , score: req.body.score};
+	/*var post  = {user: "hi" , score: req.body.score};
 	var query = connection.query('INSERT INTO test SET ?', post, function(err, result) {
 		if (!!err) {
 			resp.send("Submit score error");
 		}
-	})
+	})*/
 	resp.redirect('/game2');
 });
 
